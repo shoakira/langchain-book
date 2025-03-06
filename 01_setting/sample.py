@@ -1,14 +1,19 @@
 import json
-import openai  #←OpenAIが用意しているPythonパッケージをインポートする
+from openai import OpenAI  # 新しいインポート方法
 
-response = openai.ChatCompletion.create(  #←OpenAIのAPIを呼び出すことで、言語モデルを呼び出している
-    model="gpt-3.5-turbo",  #←呼び出す言語モデルの名前
+# クライアントのインスタンスを作成
+client = OpenAI()
+
+# 新しい形式でAPIを呼び出す
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
     messages=[
         {
             "role": "user",
-            "content": "iPhone8のリリース日を教えて"  #←入力する文章(プロンプト)
+            "content": "iPhone8のリリース日を教えて"
         },
     ]
 )
 
-print(json.dumps(response, indent=2, ensure_ascii=False))
+# 出力方法も変更が必要
+print(json.dumps(response.model_dump(), indent=2, ensure_ascii=False))
