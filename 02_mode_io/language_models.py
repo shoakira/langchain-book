@@ -1,11 +1,11 @@
-from langchain.chat_models import ChatOpenAI  #← モジュールをインポート
-from langchain.schema import HumanMessage  #← ユーザーからのメッセージであるHumanMessageをインポート
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
 
-chat = ChatOpenAI(  #←クライアントを作成しchatへ保存
-    model="gpt-3.5-turbo",  #← 呼び出すモデルを指定
+chat = ChatOpenAI(
+    model="gpt-4o",
 )
 
-result = chat( #← 実行する
+result = chat.invoke(  # __call__の代わりにinvokeメソッドを使用
     [
         HumanMessage(content="こんにちは！"),
     ]
